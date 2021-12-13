@@ -1,1 +1,1 @@
-void func2(char *s);
+void func2(char *s, char *t);
