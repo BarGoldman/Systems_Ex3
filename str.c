@@ -149,20 +149,19 @@ void print(char *str,int key)
 
 ///////////////////////2//////////////////////////
 
-/*
-char my_string[] = "bee"; 
-char txt[] = "vvrmyvvy~";
-*/
-int gimats(char *c)
+
+int gimats(char *c, int leg)
 {
+	char c_cpy[leg];
+	strcpy(c_cpy,c);
 	int ans = 0 ; 
-	for(int i = 0 ; i < strlen(c);i++){
-		ans = ans + gimat(c[i]);
+	for(int i = 0 ; i < strlen(c_cpy);i++){
+		ans = ans + gimat(c_cpy[i]);
 	}
     return ans;
 }
 
-int Z(char *s){
+int Z(char s[]){
 	int ans = 0 ; 
 	int i = 0 ;
 	for(i = 0 ; i < strlen(s) ; i++){
@@ -178,7 +177,7 @@ int Z(char *s){
 	return ans;	
 }
 
-int chack(char *s,char *c){//1 = Good 0 == No
+int chack(char s[],char c[]){//1 = Good 0 == No
 	int ans = 1; 
 	int j = 0 ;
 	int i = 0 ;
@@ -198,64 +197,70 @@ int chack(char *s,char *c){//1 = Good 0 == No
 	}
 	return ans;
 }
-//Ezer:
-void B(char *s, char *t)
-{
-	printf("%s\n",t);
-	char str[30];
-	strcpy(str,s);
-	char t ;
-	int le = strlen(str)-1;
-	for(int i = 0 ; i <= le/2 ; ++i){
-		t = str[i];
-		str[i] = str[le-i];
-		str[le-i]=t;
-	}
-	printf("%s\n",str);
-	char p[1024];//my be all is good + '';
-	memset(p,0,strlen(p));
-	int sum=0;
-        int j=0;
-        while(j<strlen(s))
-        {
-            if(s[j]<=90 && s[j]>=65)
-            {
-                sum+=s[j]-'A'+1;
-            }
-            else if (s[j]<=122 && s[j]>=97)
-            {
-                sum+=s[j]-'a'+1;
-            }
-            j++;
-        }
-	printf("%d\n",sum);
 
-	int i = 0 ; // t
-	int k = 0 ; // p
-	while(t[i] != '~')
-	{
-		p[k] = t[i];
-		printf("%s\n",t);
-		printf("%s\n",p);
-		if (sum < gimats(p)){
-		memset(p,0,strlen(p));
-		k++;
-		}
-		else if (sum = gimats(p)){
-			if(Z(p) == strlen(s)){
-				int ans1 = chack(s,p); 
-				int ans2 = chack(str,p);
-				if ( ans1 == 1|| ans2 == 1){
-					print(p,0);
-				}
-				memset(p,0,strlen(p));
-				printf("\n");
-			}
-		}
-		k++;
-		i++;
-	}
-}
+
+//Ezer:
+// void B(char *s, char *t,int lt ,int lw)
+// {
+// 	char s_cpy[lt];
+// 	strcpy(s_cpy,s);
+// 	char t_cpy[lw];
+// 	strcpy(t_cpy,t);
+
+// 	char str[lt];
+// 	strcpy(str,s);
+// 	char tt;
+// 	int le = strlen(str)-1;
+// 	for(int i = 0 ; i <= le/2 ; i++){
+// 		tt = str[i];
+// 		str[i] = str[le-i];
+// 		str[le-i]=tt;
+// 	}
+// 	char p[1024];//my be all is good + '';
+// 	memset(p,0,strlen(p));
+// 	int sum=0;
+//     int j=0;
+//         while(j<strlen(s_cpy))
+//         {
+//             if(s_cpy[j] <= 'A' && s_cpy[j] >= 'Z')
+//             {
+//                 sum+=s_cpy[j]-'A'+1;
+//             }
+//             else if (s_cpy[j]<= 'a' && s_cpy[j]>= 'z')
+//             {
+//                 sum+=s_cpy[j]-'a'+1;
+//             }
+//             j++;
+//         }
+// 	printf("%d\n",sum);
+
+// 	int i = 0 ; // t
+// 	int k = 0 ; // p
+// 	while(t_cpy[i] != '~')
+// 	{
+// 		p[k] = t_cpy[i];
+// 		printf("%s\n",t_cpy);
+// 		printf("%s\n",p);
+// 		if (sum < gimats(p,strlen(p))){
+// 		memset(p,0,strlen(p));
+// 		k++;
+// 		}
+// 		else if (sum == gimats(p,strlen(p))){
+// 			if(Z(p) == strlen(s_cpy)){
+// 				int ans1 = chack(s_cpy,p); 
+// 				int ans2 = chack(str,p);
+// 				if ( ans1 == 1|| ans2 == 1){
+// 					print(p,0);
+// 				}
+// 				memset(p,0,strlen(p));
+// 				printf("\n");
+// 			}
+// 		}
+// 		k++;
+// 		i++;
+// 	}
+// 	return;
+// }
 
 
 
@@ -333,24 +338,29 @@ void B(char *s, char *t)
 */
 
 //func 21:
-void func2(char *s,char *t)
+void func2(char *s,char *t, int lt ,int lw)
 {
-	int i , j;
-	for(i = 0 ; i < WORD ;i++)
+	char s_cpy[lt];
+	strcpy(s_cpy,s);
+	char w_cpy[lw];
+	strcpy(w_cpy,t);
+	int i;
+	for(i = 0 ; i < lt ;i++)
 	{
-		if(s[i] >= 'a' && s[i] <= 'z')
+		if(s_cpy[i] >= 'a' && s_cpy[i] <= 'z')
 		{
-			char tt = s[i];
-			s[i] = 'z'-tt+'a';
+			char tt = s_cpy[i];
+			s_cpy[i] = 'z'-tt+'a';
 		}
-		else if(s[i] >= 'A' && s[i] <= 'Z')
+		else if(s_cpy[i] >= 'A' && s_cpy[i] <= 'Z')
 		{
-			char tt = s[i];
-			s[i] = 'Z'-tt+'A';	
+			char tt = s_cpy[i];
+			s_cpy[i] = 'Z'-tt+'A';	
 		}
 	} 
-	printf("%s\n",t);
-	B(s,t);
+	printf("%s\n",s_cpy);
+	B(s,t,strlen(s),strlen(t));
+	return;
 }
 
 /*
@@ -392,7 +402,7 @@ void func2(char *s,char *t)
 		k--; 
 	}
 	printf("%s\n" , ans );
-	/*
+	
 	ans[0] == s ;
 	char str[]= "";
 	for(int j = 0 ; j < length ;j++){
