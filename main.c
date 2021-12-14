@@ -21,6 +21,7 @@ int main()
 		printf("temp : %c\n",my_string[i]);
 	}
 	*/
+	printf("%s\n",txt);
 	func2(my_string,txt);
 	/*
 	for(int i = 0 ; i < length ; i++)

@@ -153,6 +153,14 @@ void print(char *str,int key)
 char my_string[] = "bee"; 
 char txt[] = "vvrmyvvy~";
 */
+int gimats(char *c)
+{
+	int ans = 0 ; 
+	for(int i = 0 ; i < strlen(c);i++){
+		ans = ans + gimat(c[i]);
+	}
+    return ans;
+}
 
 int Z(char *s){
 	int ans = 0 ; 
@@ -170,15 +178,93 @@ int Z(char *s){
 	return ans;	
 }
 
+int chack(char *s,char *c){//1 = Good 0 == No
+	int ans = 1; 
+	int j = 0 ;
+	int i = 0 ;
+	while ( i < strlen(c) && j < strlen(s))
+	{
+		if(s[j] != c[i] && ' ' != c[i]){
+		    return 0;
+		}
+		else if(' ' == c[i]){
+			i++;
+		}
+		else{
+			j++;
+			i++;	
+		}
+	
+	}
+	return ans;
+}
 //Ezer:
 void B(char *s, char *t)
 {
-	printf("temp : %d\n",2);
-	int k = 0; 
-	int key = 0;
-	int i = 0 , j =0;
-	char str[1024];
-	memset(str,0,strlen(str));
+	printf("%s\n",t);
+	char str[30];
+	strcpy(str,s);
+	char t ;
+	int le = strlen(str)-1;
+	for(int i = 0 ; i <= le/2 ; ++i){
+		t = str[i];
+		str[i] = str[le-i];
+		str[le-i]=t;
+	}
+	printf("%s\n",str);
+	char p[1024];//my be all is good + '';
+	memset(p,0,strlen(p));
+	int sum=0;
+        int j=0;
+        while(j<strlen(s))
+        {
+            if(s[j]<=90 && s[j]>=65)
+            {
+                sum+=s[j]-'A'+1;
+            }
+            else if (s[j]<=122 && s[j]>=97)
+            {
+                sum+=s[j]-'a'+1;
+            }
+            j++;
+        }
+	printf("%d\n",sum);
+
+	int i = 0 ; // t
+	int k = 0 ; // p
+	while(t[i] != '~')
+	{
+		p[k] = t[i];
+		printf("%s\n",t);
+		printf("%s\n",p);
+		if (sum < gimats(p)){
+		memset(p,0,strlen(p));
+		k++;
+		}
+		else if (sum = gimats(p)){
+			if(Z(p) == strlen(s)){
+				int ans1 = chack(s,p); 
+				int ans2 = chack(str,p);
+				if ( ans1 == 1|| ans2 == 1){
+					print(p,0);
+				}
+				memset(p,0,strlen(p));
+				printf("\n");
+			}
+		}
+		k++;
+		i++;
+	}
+}
+
+
+
+
+
+
+
+
+/*
 	int leg =  strlen(s);
 	printf("temp : %d\n",3);
 	while (t[i] != '~')
@@ -244,6 +330,7 @@ void B(char *s, char *t)
 	}
 	return;
 }
+*/
 
 //func 21:
 void func2(char *s,char *t)
@@ -251,17 +338,18 @@ void func2(char *s,char *t)
 	int i , j;
 	for(i = 0 ; i < WORD ;i++)
 	{
-		if(s[i] >= 97 && s[i] <= 122)
+		if(s[i] >= 'a' && s[i] <= 'z')
 		{
-			j = 97 - s[i] ; 
-			s[i] = 122 + j ;
+			char tt = s[i];
+			s[i] = 'z'-tt+'a';
 		}
-		else if(s[i] >= 65 && s[i] <= 90)
+		else if(s[i] >= 'A' && s[i] <= 'Z')
 		{
-			j = 65 - s[i] ;
-			s[i] = 90 + j ;	
+			char tt = s[i];
+			s[i] = 'Z'-tt+'A';	
 		}
 	} 
+	printf("%s\n",t);
 	B(s,t);
 }
 
