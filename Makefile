@@ -10,6 +10,7 @@ str.o: str.c str.h
 	gcc -Wall -c str.c
 
 .PHONY: clean all
-
+	
 clean:
 	rm -f *.o stringProg
+		
