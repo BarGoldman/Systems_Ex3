@@ -45,10 +45,4 @@ int main()
 	printf("Anagram Sequences: ");
 	func3(word,i,txt,j);
 	return 0;
-	
 }
-
-
-	
-
-
