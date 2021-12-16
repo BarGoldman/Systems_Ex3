@@ -4,10 +4,8 @@
 #define TXT 1024
 #define WORD 30 
 
-
 int main()
 {
-	
     char word[30];
 	memset(word,0,strlen(word));
 	scanf("%c",&word[0]);
@@ -38,14 +36,16 @@ int main()
 
 	printf("Gematria Sequences: ");
 	func1(word,i,txt,j);
+	printf("\n");
 	printf("Atbash Sequences: ");
 	func2(word,i,txt,j);
+	printf("\n");
 	printf("Anagram Sequences: ");
 	func3(word,i,txt,j);
+	printf("\n");
 	
 	return 0;
 }
 
 	
-
 

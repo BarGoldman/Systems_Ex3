@@ -1,3 +1,4 @@
+
 #include <stdio.h>
 #include <string.h>
 #include "str.h"
@@ -28,14 +29,31 @@ int gimats(char *c)
     return ans;
 }
 
-void print1(char *str,int len,int key)
+int help_print(char* str,int len)
+{
+	int counte=0;
+	int key=0;
+	for(int i=len-1;i>=0;i--)
+	{
+		if(gimat(str[i])==0 && key==0)
+		{
+			continue;
+		}
+		key=1;
+		counte++;
+	}
+	return counte;
+}
+
+void print(char *str,int len,int key)
 {
 	int m=0;
     if(key!=0)
     {
         printf("~");
     }
-    for(int i = 0 ; i <= len ; i++)
+	int l=help_print(str,len);
+    for(int i = 0 ; i < l ; i++)
     {
         int ans = gimat(str[i]);
         if(m==0 && ans==0)
@@ -115,7 +133,7 @@ void func1(char *word,int len_w,char *txt,int len_t)
         {
             memset(s,0,strlen(s));
             s[0]=txt[i];
-            print1(s,strlen(s),key);
+            print(s,strlen(s),key);
             key++;
             memset(s,0,strlen(s));
             count=0;
@@ -125,7 +143,7 @@ void func1(char *word,int len_w,char *txt,int len_t)
          else if(temp+ans==sum)
         {
             s[j]=txt[i];
-            print1(s,strlen(s),key);
+            print(s,strlen(s),key);
             key++;
             memset(s,0,strlen(s));
             count=0;
@@ -154,7 +172,7 @@ void func1(char *word,int len_w,char *txt,int len_t)
             }
         }
     }
-	printf("\n");
+
 }
 
 void func2(char *w,int len_w,char *txt,int len_t)
@@ -185,7 +203,7 @@ void func2(char *w,int len_w,char *txt,int len_t)
 	{
 		if(len(str,strlen(str))==len_w)
 	 	{
-			print1(str,strlen(str),k);
+			print(str,strlen(str),k);
 			memset(str,0,strlen(str));
 			k++;
 			j=0;
@@ -245,7 +263,7 @@ void func2(char *w,int len_w,char *txt,int len_t)
 
 	}
 
-	printf("\n");
+
 	
 }
 
@@ -293,7 +311,7 @@ void func3(char *word,int len_w,char *txt,int len_t)
 					s[j]=txt[i];
 					if(len(s,strlen(s))==len_w)
 					{
-						print1(s,strlen(s),key);
+						print(s,strlen(s),key);
 						key++;
 						j=0;
 						i=i-strlen(s)+3;
@@ -333,7 +351,7 @@ void func3(char *word,int len_w,char *txt,int len_t)
 		}
 		else if(len(s,strlen(s))==len_w)
 		{
-			print1(s,strlen(s),key);
+			print(s,strlen(s),key);
 			key++;
 			j=0;
 			i=i-strlen(s)+2;
