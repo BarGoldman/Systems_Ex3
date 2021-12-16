@@ -13,4 +13,5 @@ str.o: str.c str.h
 	
 clean:
 	rm -f *.o stringProg
+
 		
