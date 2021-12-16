@@ -1,3 +1,4 @@
+
 #include <stdio.h>
 #include <string.h>
 #include "str.h"
@@ -154,7 +155,7 @@ void func1(char *word,int len_w,char *txt,int len_t)
             }
         }
     }
-	printf("\n");
+
 }
 
 void func2(char *w,int len_w,char *txt,int len_t)
@@ -244,8 +245,6 @@ void func2(char *w,int len_w,char *txt,int len_t)
 		}
 
 	}
-
-	printf("\n");
 	
 }
 
