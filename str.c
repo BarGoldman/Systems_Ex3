@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 #include <string.h>
 #include "str.h"
@@ -36,7 +35,7 @@ void print1(char *str,int len,int key)
     {
         printf("~");
     }
-    for(int i = 0 ; i < len ; i++)
+    for(int i = 0 ; i <= len ; i++)
     {
         int ans = gimat(str[i]);
         if(m==0 && ans==0)
@@ -155,7 +154,7 @@ void func1(char *word,int len_w,char *txt,int len_t)
             }
         }
     }
-
+	printf("\n");
 }
 
 void func2(char *w,int len_w,char *txt,int len_t)
@@ -245,6 +244,8 @@ void func2(char *w,int len_w,char *txt,int len_t)
 		}
 
 	}
+
+	printf("\n");
 	
 }
 
@@ -347,4 +348,3 @@ void func3(char *word,int len_w,char *txt,int len_t)
 	}		
 	
 }
-
